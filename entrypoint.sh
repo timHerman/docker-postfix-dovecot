@@ -64,6 +64,11 @@ if [ ! -f $INITIALIZED_FILE ]; then
                 touch $INITIALIZED_FILE
 fi
 
-chown -R vmail:vmail /var/mail 
+# Creating certificates
+openssl req -new -x509 -days 3650 -nodes -subj "/C=BE/ST=Brussels/L=Haaltert/O=VIMM.be/CN=diva.vimm.be" -out /etc/ssl/certs/dovecot.pem -keyout /etc/ssl/private/dovecot.pem    
+chmod o= /etc/ssl/private/dovecot.pem   
+
+# chowning mailsdirs
+chown -R vmail:vmail /var/mail
 
 exec "$@"

@@ -35,14 +35,15 @@ RUN /usr/bin/easy_install supervisor-stdout
 ADD ./supervisord.conf /etc/supervisord.conf
 
 RUN mkdir -p /etc/ssl/certs/
-RUN openssl req -new -x509 -days 3650 -nodes -subj "/C=BE/ST=Brussels/L=Haaltert/O=VIMM.be/CN=diva.vimm.be" -out /etc/ssl/certs/dovecot.pem -keyout /etc/ssl/private/dovecot.pem
-RUN chmod o= /etc/ssl/private/dovecot.pem
+VOLUME /etc/ssl/certs/
+
+RUN mkdir -p /etc/ssl/private/
+VOLUME /etc/ssl/private/
 
 RUN mkdir -p /var/mail/vhosts/
 VOLUME /var/mail/vhosts
 RUN groupadd -g 5000 vmail
 RUN useradd -g vmail -u 5000 vmail -d /var/mail
-RUN chown -R vmail:vmail /var/mail
 
 ADD postfix/main.cf /etc/postfix/main.cf
 ADD postfix/master.cf /etc/postfix/master.cf
@@ -60,8 +61,6 @@ ADD dovecot/auth-sql.conf.ext /etc/dovecot/conf.d/auth-sql.conf.ext
 RUN chown -R vmail:dovecot /etc/dovecot
 RUN chmod -R o-rwx /etc/dovecot
 
-
-
 ADD initdb.sql /tmp/initdb.sql
 
 ADD entrypoint.sh /entrypoint.sh
@@ -75,7 +74,7 @@ EXPOSE 993
 
 EXPOSE 587
 EXPOSE 110
-ESPOSE 995
+EXPOSE 995
 
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
