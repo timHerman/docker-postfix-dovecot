@@ -6,7 +6,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 
-RUN apt-get install -y mysql-client python-setuptools debconf-utils openssl syslog-ng
+RUN apt-get install -y mysql-client python-setuptools debconf-utils openssl rsyslog
 
 RUN echo "postfix postfix/root_address    string" | debconf-set-selections
 RUN echo "postfix postfix/procmail        boolean false" | debconf-set-selections
