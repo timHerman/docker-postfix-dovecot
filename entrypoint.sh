@@ -55,6 +55,7 @@ if [ ! -f $INITIALIZED_FILE ]; then
 
                 if [[ "x"$MAIL_HOSTNAME != "x" ]]; then
                         sed -i -e "s:\[primaryhost\]:${MAIL_HOSTNAME}:g" /etc/postfix/main.cf
+                        sed -i -e "s:\[primaryhost\]:${MAIL_HOSTNAME}:g" /etc/dovecot/dovecot.conf
 
                         echo >&2 "Setting hostname in config"
 
