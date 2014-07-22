@@ -1,0 +1,5 @@
+user = [dbusername]
+password = [dbpassword]
+hosts = [dbhost]
+dbname = [dbname]
+query = SELECT 1 FROM virtual_users WHERE email='%s'
