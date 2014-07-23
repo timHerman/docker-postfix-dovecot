@@ -79,6 +79,5 @@ EXPOSE 995
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
 
-CMD ["bash"]
-#CMD ["/start.sh"]
+CMD ["/start.sh"]
 
