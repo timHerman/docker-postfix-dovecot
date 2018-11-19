@@ -23,7 +23,7 @@ RUN echo "postfix postfix/mynetworks      string  127.0.0.0/8 [::ffff:127.0.0.0]
 RUN echo "postfix postfix/not_configured  error" | debconf-set-selections
 RUN echo "postfix postfix/main_mailer_type        select  Internet Site" | debconf-set-selections
 RUN echo "postfix postfix/sqlite_warning  boolean" | debconf-set-selections
-RUN echo "postfix postfix/destinations    string  diva.vimm.be, localhost.localdomain, localhost" | debconf-set-selections
+RUN echo "postfix postfix/destinations    string  custom.domain, localhost.localdomain, localhost" | debconf-set-selections
 RUN echo "postfix postfix/chattr  boolean false" | debconf-set-selections
 RUN echo "postfix postfix/mailbox_limit   string  0" | debconf-set-selections
 RUN echo "postfix postfix/relayhost       string" | debconf-set-selections
